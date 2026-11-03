@@ -4,268 +4,745 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Little Custom Stories | Personalized AI Children's Books</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset & Base Canvas Styling */
+    /* --- CSS Variables & Design System --- */
+    :root {
+      --bg-cream: #FAF7F2;
+      --bg-surface: #FFFFFF;
+      --primary: #1F2D3D;
+      --primary-soft: #2C3E50;
+      --accent-coral: #E06D53;
+      --accent-gold: #F5A623;
+      --accent-sage: #E8F0EC;
+      --accent-sage-dark: #386641;
+      --text-muted: #6B7C93;
+      --border-subtle: #EDE8E1;
+      --shadow-sm: 0 4px 12px rgba(31, 45, 61, 0.04);
+      --shadow-md: 0 12px 32px rgba(31, 45, 61, 0.08);
+      --shadow-lg: 0 24px 60px rgba(31, 45, 61, 0.12);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #fdfbf7; /* Soft aesthetic cream background */
-      color: #2c3e50;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--primary);
       line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* Hero Section Promotional Header */
+    /* Subtle ambient background glow */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 166, 35, 0.07) 0%, rgba(224, 109, 83, 0.04) 50%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* --- Navigation Bar --- */
+    .site-nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Fraunces', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .brand-sparkle {
+      color: var(--accent-gold);
+      font-size: 1.4rem;
+    }
+
+    .nav-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-subtle);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-sage-dark);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* --- Hero Section --- */
     .hero-section {
+      position: relative;
+      z-index: 1;
       text-align: center;
-      padding: 60px 20px 40px 20px;
-      max-width: 800px;
+      padding: 40px 20px 30px 20px;
+      max-width: 860px;
       margin: 0 auto;
     }
-    .hero-title {
-      font-size: 2.5rem;
-      color: #2c3e50;
-      margin-bottom: 15px;
-      font-weight: 800;
-    }
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: #5a6c7d;
+
+    .pill-announcement {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(224, 109, 83, 0.08);
+      color: var(--accent-coral);
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
       margin-bottom: 20px;
     }
 
-    /* --- Before/After Photo Adaptation Gallery --- */
-    .gallery-container {
-      max-width: 700px;
-      margin: 0 auto 50px auto;
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-      border: 1px solid #f0edf5;
-      text-align: center;
-    }
-    .gallery-title {
-      font-size: 1.5rem;
-      color: #2c3e50;
-      margin-bottom: 15px;
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.3rem, 5vw, 3.75rem);
+      color: var(--primary);
+      line-height: 1.15;
       font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
     }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent-coral);
+      font-weight: 400;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 35px auto;
+      font-weight: 400;
+    }
+
+    /* --- Trust & Steps Banner --- */
+    .features-strip {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 45px;
+      flex-wrap: wrap;
+    }
+
+    .feature-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: 50px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary-soft);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    /* --- Transformation Gallery --- */
+    .gallery-container {
+      max-width: 800px;
+      margin: 0 auto 60px auto;
+      background: var(--bg-surface);
+      padding: 36px 32px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-subtle);
+      text-align: center;
+      position: relative;
+    }
+
+    .gallery-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 12px rgba(31, 45, 61, 0.15);
+    }
+
+    .gallery-header {
+      margin-bottom: 24px;
+    }
+
+    .gallery-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .gallery-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
     .gallery-tabs {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       flex-wrap: wrap;
     }
+
     .tab-btn {
-      background: #f4f1ea;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 20px;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-subtle);
+      padding: 10px 20px;
+      border-radius: 50px;
       cursor: pointer;
       font-weight: 600;
-      color: #5a6c7d;
-      transition: all 0.2s ease;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
+
+    .tab-btn:hover {
+      background: #F0ECE4;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
     .tab-btn.active {
-      background: #2c3e50;
-      color: #ffffff;
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 6px 16px rgba(31, 45, 61, 0.18);
     }
+
     .gallery-display {
       position: relative;
       width: 100%;
-      border-radius: 12px;
+      border-radius: var(--radius-md);
       overflow: hidden;
+      background: #F4EFEB;
+      aspect-ratio: 16 / 10;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: #fafafa;
+      justify-content: center;
+      border: 1px solid var(--border-subtle);
     }
+
     .gallery-img {
-      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      max-height: 420px;
-      object-fit: contain;
-      border-radius: 12px;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out, transform 0.4s ease-out;
+      transform: scale(0.99);
     }
+
     .gallery-img.active {
-      display: block;
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* Form Container Component Wrapper */
+    .gallery-caption-pill {
+      position: absolute;
+      bottom: 16px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      pointer-events: none;
+    }
+
+    /* --- Form Container --- */
+    .form-wrapper {
+      max-width: 800px;
+      margin: 0 auto 80px auto;
+      padding: 0 20px;
+    }
+
+    .form-header-card {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-header-card h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .form-header-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
     .form-container {
-      max-width: 700px;
-      margin: 0 auto 60px auto;
-      background: #ffffff;
-      padding: 10px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-      border: 1px solid #f0edf5;
+      background: var(--bg-surface);
+      padding: 20px 15px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-subtle);
+      position: relative;
     }
 
-    /* --- FIXED Testimonials Horizontal Scrolling Layout --- */
+    /* --- Infinite Testimonials Marquee --- */
     .testimonial-slider-container {
-      padding: 60px 0;
-      background: #fdfbf7;
+      padding: 80px 0 100px 0;
+      background: #FFFFFF;
       overflow: hidden;
-      border-top: 1px solid #f0edf5;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
       width: 100%;
     }
-    .slider-title {
+
+    .slider-header {
       text-align: center;
-      color: #2c3e50;
-      margin-bottom: 40px;
-      font-size: 2rem;
+      max-width: 600px;
+      margin: 0 auto 45px auto;
+      padding: 0 20px;
     }
+
+    .slider-title {
+      font-family: 'Fraunces', serif;
+      color: var(--primary);
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin-bottom: 10px;
+    }
+
+    .slider-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* Mask container gives smooth gradient fade on left & right */
     .slider-wrapper {
       position: relative;
       width: 100%;
       overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
+
     .slider-track {
       display: flex;
       width: max-content;
-      gap: 30px;
-      animation: infiniteScroll 30s linear infinite;
+      gap: 24px;
+      animation: infiniteScroll 36s linear infinite;
+      padding: 10px 0;
     }
+
     .slider-track:hover {
       animation-play-state: paused;
     }
+
     .testimonial-card {
-      background: #ffffff;
-      padding: 30px;
-      border-radius: 16px;
-      width: 350px;
-      flex-shrink: 0; /* CRITICAL BUGFIX: Stops browser from compressing cards */
-      box-shadow: 0 8px 24px rgba(149, 157, 165, 0.06);
+      background: var(--bg-cream);
+      padding: 32px;
+      border-radius: var(--radius-md);
+      width: 380px;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      border: 1px solid #f0edf5;
-    }
-    .stars {
-      color: #ffc107;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-    .review-text {
-      color: #5a6c7d;
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin: 0 0 20px 0;
-      font-style: italic;
-    }
-    .reviewer-name {
-      color: #2c3e50;
-      margin: 0;
-      font-size: 0.9rem;
-      font-weight: 600;
+      border: 1px solid rgba(237, 232, 225, 0.8);
+      transition: transform 0.2s ease;
     }
 
-    /* Infinite Scroll Animation Drivers */
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .stars-badge {
+      letter-spacing: 2px;
+      font-size: 0.95rem;
+    }
+
+    .verified-pill {
+      font-size: 0.72rem;
+      background: var(--accent-sage);
+      color: var(--accent-sage-dark);
+      padding: 3px 8px;
+      border-radius: 50px;
+      font-weight: 700;
+    }
+
+    .review-text {
+      color: var(--primary-soft);
+      font-size: 0.96rem;
+      line-height: 1.65;
+      margin: 0 0 24px 0;
+      font-style: italic;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar-initial {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #E8E2D8;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .reviewer-name {
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .reviewer-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
     @keyframes infiniteScroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 15px)); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* --- Footer & Guarantee --- */
+    .site-footer {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .guarantee-box {
+      background: #FFFFFF;
+      border: 1px dashed var(--border-subtle);
+      padding: 24px;
+      border-radius: var(--radius-md);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: left;
+    }
+
+    .guarantee-icon {
+      font-size: 2.2rem;
+    }
+
+    .guarantee-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .guarantee-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 600px) {
+      .gallery-container {
+        padding: 24px 16px;
+      }
+      .features-strip {
+        gap: 10px;
+      }
+      .feature-pill {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+      }
+      .testimonial-card {
+        width: 300px;
+        padding: 22px;
+      }
+      .guarantee-box {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1. Hero Promotional Copy Area -->
-  <header class="hero-section">
-    <h1 class="hero-title">Create a Unique Adventure for Your Child ✨</h1>
-    <p class="hero-subtitle">Fill out the details below to initialize our storytelling system. Our platform generates a completely custom plot based on your choices!</p>
+  <!-- Header Navigation -->
+  <header class="site-nav">
+    <a href="#" class="brand-logo">
+      <span class="brand-sparkle">✦</span> Little Custom Stories
+    </a>
+    <div class="nav-badge">
+      <span>●</span> 100% Custom Plots
+    </div>
   </header>
 
-  <!-- 2. Interactive Transformation Blueprint Gallery -->
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="pill-announcement">
+      ✨ Turn Your Child Into The Hero
+    </div>
+    <h1 class="hero-title">
+      Every child deserves their own<br><em>one-of-a-kind storybook.</em>
+    </h1>
+    <p class="hero-subtitle">
+      No cookie-cutter templates. Share your child’s passions, upload a photo, and our storytelling AI crafts a personalized watercolor adventure they'll cherish forever.
+    </p>
+
+    <!-- Trust Feature Badges -->
+    <div class="features-strip">
+      <div class="feature-pill">🎨 True Photo Likeness</div>
+      <div class="feature-pill">📖 Truly Custom Narrative</div>
+      <div class="feature-pill">🪄 Manual Quality Review</div>
+      <div class="feature-pill">📦 Keepsake Hardcovers</div>
+    </div>
+  </section>
+
+  <!-- Interactive Before/After Gallery -->
   <section class="gallery-container">
-    <h3 class="gallery-title">Real Photo to Storybook Character 🪄</h3>
+    <div class="gallery-badge">AI Adaptation Showcase</div>
+    <div class="gallery-header">
+      <h3 class="gallery-title">Real Photo to Whimsical Character</h3>
+      <p class="gallery-subtitle">Click the story examples below to see how photos transform into timeless story art.</p>
+    </div>
     
     <div class="gallery-tabs">
-      <button class="tab-btn active" onclick="switchExample(0)">Example 1</button>
-      <button class="tab-btn" onclick="switchExample(1)">Example 2</button>
-      <button class="tab-btn" onclick="switchExample(2)">Example 3</button>
-      <button class="tab-btn" onclick="switchExample(3)">Example 4</button>
+      <button class="tab-btn active" onclick="switchExample(0)">🚀 Space Explorer</button>
+      <button class="tab-btn" onclick="switchExample(1)">🦖 Dino Kingdom</button>
+      <button class="tab-btn" onclick="switchExample(2)">🧜‍♀️ Deep Sea Quest</button>
+      <button class="tab-btn" onclick="switchExample(3)">🏰 Castle Secret</button>
     </div>
 
     <div class="gallery-display">
-      <!-- Image assets are mapped here. Ensure these image files are saved directly in your GitHub repo alongside this file -->
       <img src="image_TZ2Asl.png" alt="Before/After Example 1" class="gallery-img active">
       <img src="image_tIats1.png" alt="Before/After Example 2" class="gallery-img">
       <img src="image_WeRROZ.png" alt="Before/After Example 3" class="gallery-img">
       <img src="image_ejak1X.png" alt="Before/After Example 4" class="gallery-img">
+      <div class="gallery-caption-pill">✨ Real Child Photo ➜ Illustrated Storybook</div>
     </div>
   </section>
 
-  <!-- 3. Live Tally Form Configuration Embed -->
-  <main class="form-container">
-    <iframe data-tally-src="https://tally.so" loading="lazy" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0" title="Little Custom Stories"></iframe>
-    <script>
-      var d=document, w="https://tally.so", v=function(){
-        "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))
-      };
-      if("undefined"!=typeof Tally)v();
-      else if(d.querySelector('script[src="'+w+'"]')==null){
-        var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
-      }
-    </script>
+  <!-- Form Section Wrapper -->
+  <main class="form-wrapper">
+    <div class="form-header-card">
+      <h2>Build Your Story in 2 Minutes</h2>
+      <p>Tell us a few fun details and let the bedtime magic begin!</p>
+    </div>
+
+    <div class="form-container">
+      <iframe data-tally-src="https://tally.so" loading="lazy" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0" title="Little Custom Stories"></iframe>
+      <script>
+        var d=document, w="https://tally.so", v=function(){
+          "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))
+        };
+        if("undefined"!=typeof Tally)v();
+        else if(d.querySelector('script[src="'+w+'"]')==null){
+          var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
+        }
+      </script>
+    </div>
   </main>
 
-  <!-- 4. Infinite Horizontal Scrolling Reviews Track -->
+  <!-- Edge-Faded Infinite Marquee Testimonials -->
   <section class="testimonial-slider-container">
-    <h2 class="slider-title">What Loving Parents Are Saying 💕</h2>
+    <div class="slider-header">
+      <h2 class="slider-title">What Loving Parents Are Saying</h2>
+      <p class="slider-subtitle">Real feedback from parents reading custom bedtime tales around the world.</p>
+    </div>
+
     <div class="slider-wrapper">
       <div class="slider-track">
         
         <!-- Card 1 -->
         <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
-          <h4 class="reviewer-name">— Sarah M., Sydney</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala on Jupiter, and the AI generated the most magical plot."</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">SM</div>
+            <div>
+              <h4 class="reviewer-name">Sarah M.</h4>
+              <span class="reviewer-detail">Sydney, Australia</span>
+            </div>
+          </div>
         </div>
 
         <!-- Card 2 -->
         <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
-          <h4 class="reviewer-name">— James R., Melbourne</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"I was skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile in a classic watercolor look."</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">JR</div>
+            <div>
+              <h4 class="reviewer-name">James R.</h4>
+              <span class="reviewer-detail">Melbourne, Australia</span>
+            </div>
+          </div>
         </div>
 
         <!-- Card 3 -->
         <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"The fact that you aren't stuck picking from a dropdown list of 5 generic story options makes this so special. Our daughter is obsessed with garbage trucks and magical fairies—two things that never go together normally. The story blended them perfectly!"</p>
-          <h4 class="reviewer-name">— David L., Newcastle</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"Not being stuck picking from a dropdown list of 5 generic options makes this so special. Our daughter is obsessed with garbage trucks and fairies—the story blended them into a hilarious, beautiful adventure!"</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">DL</div>
+            <div>
+              <h4 class="reviewer-name">David L.</h4>
+              <span class="reviewer-detail">Newcastle, Australia</span>
+            </div>
+          </div>
         </div>
 
         <!-- Card 4 -->
         <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"Seeing my son's real face adapted into a little cartoon explorer on the pages completely blew him away. He kept pointing at the book yelling 'That's me!' Manual review steps definitely show—the final print quality is flawless."</p>
-          <h4 class="reviewer-name">— Chloe V., Adelaide</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"Seeing my son's real face adapted into a little cartoon explorer completely blew him away. He kept pointing yelling 'That's me!' The manual review steps definitely show in the print quality."</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">CV</div>
+            <div>
+              <h4 class="reviewer-name">Chloe V.</h4>
+              <span class="reviewer-detail">Adelaide, Australia</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Cloned Set (Required for flawless, seamless infinite loop resets) -->
+        <!-- Cloned Set for Seamless Infinite Loop -->
         <div class="testimonial-card" aria-hidden="true">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
-          <h4 class="reviewer-name">— Sarah M., Sydney</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala on Jupiter, and the AI generated the most magical plot."</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">SM</div>
+            <div>
+              <h4 class="reviewer-name">Sarah M.</h4>
+              <span class="reviewer-detail">Sydney, Australia</span>
+            </div>
+          </div>
         </div>
 
         <div class="testimonial-card" aria-hidden="true">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
-          <h4 class="reviewer-name">— James R., Melbourne</h4>
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"I was skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile in a classic watercolor look."</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">JR</div>
+            <div>
+              <h4 class="reviewer-name">James R.</h4>
+              <span class="reviewer-detail">Melbourne, Australia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="card-top">
+            <span class="stars-badge">⭐⭐⭐⭐⭐</span>
+            <span class="verified-pill">Verified Parent</span>
+          </div>
+          <p class="review-text">"Not being stuck picking from a dropdown list of 5 generic options makes this so special. Our daughter is obsessed with garbage trucks and fairies—the story blended them into a hilarious, beautiful adventure!"</p>
+          <div class="reviewer-info">
+            <div class="avatar-initial">DL</div>
+            <div>
+              <h4 class="reviewer-name">David L.</h4>
+              <span class="reviewer-detail">Newcastle, Australia</span>
+            </div>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
+
+  <!-- Footer & Peace of Mind -->
+  <footer class="site-footer">
+    <div class="guarantee-box">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <div class="guarantee-title">Digital Proof Preview Before Printing</div>
+        <div class="guarantee-sub">You get to preview the illustrations and story text before the hardcover is shipped. 100% satisfaction guaranteed.</div>
+      </div>
+    </div>
+
+    <p class="footer-copy">© 2026 Little Custom Stories. Handcrafted with love & AI imagination.</p>
+  </footer>
 
   <!-- Interactive JavaScript Gallery Script -->
   <script>
@@ -276,6 +753,11 @@
       images.forEach(img => img.classList.remove('active'));
       buttons.forEach(btn => btn.classList.remove('active'));
       
-      images[index].classList.add('active');
-      buttons[index].classList.add('active')
+      if (images[index] && buttons[index]) {
+        images[index].classList.add('active');
+        buttons[index].classList.add('active');
+      }
     }
+  </script>
+</body>
+</html>
