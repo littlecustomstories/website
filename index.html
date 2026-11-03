@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Little Custom Stories | Personalized AI Children's Books</title>
   <style>
-    /* Reset & Base Styles */
+    /* Reset & Base Canvas Styling */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,12 +13,12 @@
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #fdfbf7; /* Soft cream background */
+      background-color: #fdfbf7; /* Soft aesthetic cream background */
       color: #2c3e50;
       line-height: 1.6;
     }
 
-    /* Hero Section Header */
+    /* Hero Section Promotional Header */
     .hero-section {
       text-align: center;
       padding: 60px 20px 40px 20px;
@@ -37,7 +37,7 @@
       margin-bottom: 20px;
     }
 
-    /* --- New Before/After Interactive Gallery --- */
+    /* --- Before/After Photo Adaptation Gallery --- */
     .gallery-container {
       max-width: 700px;
       margin: 0 auto 50px auto;
@@ -97,7 +97,7 @@
       display: block;
     }
 
-    /* Form Container Wrapper */
+    /* Form Container Component Wrapper */
     .form-container {
       max-width: 700px;
       margin: 0 auto 60px auto;
@@ -108,12 +108,13 @@
       border: 1px solid #f0edf5;
     }
 
-    /* Testimonials Horizontal Slider Layout */
+    /* --- FIXED Testimonials Horizontal Scrolling Layout --- */
     .testimonial-slider-container {
       padding: 60px 0;
       background: #fdfbf7;
       overflow: hidden;
       border-top: 1px solid #f0edf5;
+      width: 100%;
     }
     .slider-title {
       text-align: center;
@@ -125,13 +126,12 @@
       position: relative;
       width: 100%;
       overflow: hidden;
-      display: flex;
     }
     .slider-track {
       display: flex;
       width: max-content;
       gap: 30px;
-      animation: infiniteScroll 25s linear infinite;
+      animation: infiniteScroll 30s linear infinite;
     }
     .slider-track:hover {
       animation-play-state: paused;
@@ -141,6 +141,7 @@
       padding: 30px;
       border-radius: 16px;
       width: 350px;
+      flex-shrink: 0; /* CRITICAL BUGFIX: Stops browser from compressing cards */
       box-shadow: 0 8px 24px rgba(149, 157, 165, 0.06);
       display: flex;
       flex-direction: column;
@@ -166,7 +167,7 @@
       font-weight: 600;
     }
 
-    /* Infinite Scroll Keyframes loop setup */
+    /* Infinite Scroll Animation Drivers */
     @keyframes infiniteScroll {
       0% { transform: translateX(0); }
       100% { transform: translateX(calc(-50% - 15px)); }
@@ -175,13 +176,13 @@
 </head>
 <body>
 
-  <!-- 1. Hero Promotional Area -->
+  <!-- 1. Hero Promotional Copy Area -->
   <header class="hero-section">
     <h1 class="hero-title">Create a Unique Adventure for Your Child ✨</h1>
     <p class="hero-subtitle">Fill out the details below to initialize our storytelling system. Our platform generates a completely custom plot based on your choices!</p>
   </header>
 
-  <!-- 2. Interactive Transformation Gallery -->
+  <!-- 2. Interactive Transformation Blueprint Gallery -->
   <section class="gallery-container">
     <h3 class="gallery-title">Real Photo to Storybook Character 🪄</h3>
     
@@ -193,7 +194,7 @@
     </div>
 
     <div class="gallery-display">
-      <!-- To use your custom assets, replace these placeholder names with your actual filename paths later if needed -->
+      <!-- Image assets are mapped here. Ensure these image files are saved directly in your GitHub repo alongside this file -->
       <img src="image_TZ2Asl.png" alt="Before/After Example 1" class="gallery-img active">
       <img src="image_tIats1.png" alt="Before/After Example 2" class="gallery-img">
       <img src="image_WeRROZ.png" alt="Before/After Example 3" class="gallery-img">
@@ -201,7 +202,7 @@
     </div>
   </section>
 
-  <!-- 3. Live Tally Form Embed Layer -->
+  <!-- 3. Live Tally Form Configuration Embed -->
   <main class="form-container">
     <iframe data-tally-src="https://tally.so" loading="lazy" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0" title="Little Custom Stories"></iframe>
     <script>
@@ -215,7 +216,7 @@
     </script>
   </main>
 
-  <!-- 4. Infinite Scrolling Testimonials Grid -->
+  <!-- 4. Infinite Horizontal Scrolling Reviews Track -->
   <section class="testimonial-slider-container">
     <h2 class="slider-title">What Loving Parents Are Saying 💕</h2>
     <div class="slider-wrapper">
@@ -226,4 +227,55 @@
           <div class="stars">⭐⭐⭐⭐⭐</div>
           <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
           <h4 class="reviewer-name">— Sarah M., Sydney</h4>
-        </
+        </div>
+
+        <!-- Card 2 -->
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
+          <h4 class="reviewer-name">— James R., Melbourne</h4>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"The fact that you aren't stuck picking from a dropdown list of 5 generic story options makes this so special. Our daughter is obsessed with garbage trucks and magical fairies—two things that never go together normally. The story blended them perfectly!"</p>
+          <h4 class="reviewer-name">— David L., Newcastle</h4>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="testimonial-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"Seeing my son's real face adapted into a little cartoon explorer on the pages completely blew him away. He kept pointing at the book yelling 'That's me!' Manual review steps definitely show—the final print quality is flawless."</p>
+          <h4 class="reviewer-name">— Chloe V., Adelaide</h4>
+        </div>
+
+        <!-- Cloned Set (Required for flawless, seamless infinite loop resets) -->
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
+          <h4 class="reviewer-name">— Sarah M., Sydney</h4>
+        </div>
+
+        <div class="testimonial-card" aria-hidden="true">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
+          <h4 class="reviewer-name">— James R., Melbourne</h4>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive JavaScript Gallery Script -->
+  <script>
+    function switchExample(index) {
+      const images = document.querySelectorAll('.gallery-img');
+      const buttons = document.querySelectorAll('.tab-btn');
+      
+      images.forEach(img => img.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      images[index].classList.add('active');
+      buttons[index].classList.add('active')
+    }
