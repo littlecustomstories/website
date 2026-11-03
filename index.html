@@ -21,7 +21,7 @@
     /* Hero Section Header */
     .hero-section {
       text-align: center;
-      padding: 60px 20px 20px 20px;
+      padding: 60px 20px 40px 20px;
       max-width: 800px;
       margin: 0 auto;
     }
@@ -34,7 +34,67 @@
     .hero-subtitle {
       font-size: 1.15rem;
       color: #5a6c7d;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    /* --- New Before/After Interactive Gallery --- */
+    .gallery-container {
+      max-width: 700px;
+      margin: 0 auto 50px auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid #f0edf5;
+      text-align: center;
+    }
+    .gallery-title {
+      font-size: 1.5rem;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #f4f1ea;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: #5a6c7d;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: #2c3e50;
+      color: #ffffff;
+    }
+    .gallery-display {
+      position: relative;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fafafa;
+    }
+    .gallery-img {
+      display: none;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .gallery-img.active {
+      display: block;
     }
 
     /* Form Container Wrapper */
@@ -121,11 +181,31 @@
     <p class="hero-subtitle">Fill out the details below to initialize our storytelling system. Our platform generates a completely custom plot based on your choices!</p>
   </header>
 
-  <!-- 2. Live Tally Form Embed Layer -->
+  <!-- 2. Interactive Transformation Gallery -->
+  <section class="gallery-container">
+    <h3 class="gallery-title">Real Photo to Storybook Character 🪄</h3>
+    
+    <div class="gallery-tabs">
+      <button class="tab-btn active" onclick="switchExample(0)">Example 1</button>
+      <button class="tab-btn" onclick="switchExample(1)">Example 2</button>
+      <button class="tab-btn" onclick="switchExample(2)">Example 3</button>
+      <button class="tab-btn" onclick="switchExample(3)">Example 4</button>
+    </div>
+
+    <div class="gallery-display">
+      <!-- To use your custom assets, replace these placeholder names with your actual filename paths later if needed -->
+      <img src="image_TZ2Asl.png" alt="Before/After Example 1" class="gallery-img active">
+      <img src="image_tIats1.png" alt="Before/After Example 2" class="gallery-img">
+      <img src="image_WeRROZ.png" alt="Before/After Example 3" class="gallery-img">
+      <img src="image_ejak1X.png" alt="Before/After Example 4" class="gallery-img">
+    </div>
+  </section>
+
+  <!-- 3. Live Tally Form Embed Layer -->
   <main class="form-container">
-    <iframe data-tally-src="https://tally.so/embed/OQa8Ya?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0" title="Little Custom Stories"></iframe>
+    <iframe data-tally-src="https://tally.so" loading="lazy" width="100%" height="1467" frameborder="0" marginheight="0" marginwidth="0" title="Little Custom Stories"></iframe>
     <script>
-      var d=document, w="https://tally.so/widgets/embed.js", v=function(){
+      var d=document, w="https://tally.so", v=function(){
         "undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))
       };
       if("undefined"!=typeof Tally)v();
@@ -135,7 +215,7 @@
     </script>
   </main>
 
-  <!-- 3. Infinite Scrolling Testimonials Grid -->
+  <!-- 4. Infinite Scrolling Testimonials Grid -->
   <section class="testimonial-slider-container">
     <h2 class="slider-title">What Loving Parents Are Saying 💕</h2>
     <div class="slider-wrapper">
@@ -146,45 +226,4 @@
           <div class="stars">⭐⭐⭐⭐⭐</div>
           <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
           <h4 class="reviewer-name">— Sarah M., Sydney</h4>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
-          <h4 class="reviewer-name">— James R., Melbourne</h4>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"The fact that you aren't stuck picking from a dropdown list of 5 generic story options makes this so special. Our daughter is obsessed with garbage trucks and magical fairies—two things that never go together normally. The story blended them perfectly!"</p>
-          <h4 class="reviewer-name">— David L., Newcastle</h4>
-        </div>
-
-        <!-- Card 4 -->
-        <div class="testimonial-card">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"Seeing my son's real face adapted into a little cartoon explorer on the pages completely blew him away. He kept pointing at the book yelling 'That's me!' Manual review steps definitely show—the final print quality is flawless."</p>
-          <h4 class="reviewer-name">— Chloe V., Adelaide</h4>
-        </div>
-
-        <!-- Duplicate Cards (For seamless loop effect) -->
-        <div class="testimonial-card" aria-hidden="true">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I’ve bought personalized books from other big sites before, but they always felt formulaic. This is on a completely different level! My son wanted a story about an astronaut koala who eats spaghetti on Jupiter, and the AI generated the most magical plot."</p>
-          <h4 class="reviewer-name">— Sarah M., Sydney</h4>
-        </div>
-
-        <div class="testimonial-card" aria-hidden="true">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p class="review-text">"I was a bit skeptical about the custom photo upgrade because some AI faces look uncanny, but the illustration style is gorgeous! It captured my daughter's exact spiky hair and bright smile perfectly in a classic watercolor look."</p>
-          <h4 class="reviewer-name">— James R., Melbourne</h4>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</body>
-</html>
+        </
